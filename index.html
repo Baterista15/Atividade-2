@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let indiceDaLista = 0;
+
+    function AdicionarItens() {
+        const inputDoUsuario = document.getElementById('Texto-Usuário');
+        const textoDigitado = inputDoUsuario.value;
+
+        inputDoUsuario.value = '';
+        const lista = document.getElementById('Lista');
+            if(textoDigitado === ''){
+                alert(`digite algo`)
+            }else{
+        lista.innerHTML += `
+        <li id="item-${indiceDaLista}">
+                <input type="checkbox" name="item-${indiceDaLista}" id="item-${indiceDaLista}-checkbox">
+                ${textoDigitado}
+                <button onclick = "RemoverItem(${indiceDaLista})">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="lixeira" width="10px" height="10px">
+                 Excluir </button>
+        </li>
+        `;
+        indiceDaLista++;
+    }
+    }
+    function RemoverItem(indice){
+        const item = document.getElementById(`item-${indice}`)
+            item.remove();
+    }
+</script>
+<style>
+    body{
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    background-color: #202124;
+    }
+    div{
+        padding: 10px;
+    }
+    h1{
+        font-size: 50px;
+        color: rgb(255, 255, 255);
+    }
+    .Itens{
+        max-width: 600px;
+        margin: auto;
+        background: rgb(146, 142, 142);
+        border-radius: 8px;
+        box-shadow: 0px 0px 6px rgb(255, 255, 255);
+    }
+    #Texto-Usuário{
+        width: 300px;
+        box-shadow: 0px 0px 6px rgb(0, 0, 0);
+    }
+    ul{
+        font-family: "Google Sans", Roboto, Arial, sans-serif;
+        font-size: 20px;
+        color: white;
+    }
+    button{
+        cursor: pointer;
+        background-color: aliceblue;
+    }
+    button:hover {
+        background-color: rgb(92, 167, 214);
+        transition: all .6s;
+    }
+</style>
+<body>
+    <div class="Itens">
+        <h1>Google Keep</h1>
+        
+        <input type="text" id="Texto-Usuário">
+        <button onclick="AdicionarItens()">Adicionar</button>
+        <div>
+            <ul id="Lista">
+
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
